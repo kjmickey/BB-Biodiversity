@@ -6,7 +6,6 @@ function demoInfo(id){
 
         //filter demo info data by id
         var filterResult = metadata.filter(info => info.id.toString() === id)[0];
-
         var panelBody = d3.select("#sample-metadata");
 
         //clear the demo info panel before getting new data
@@ -104,8 +103,6 @@ function plots(id) {
   
         // create the bubble plot
         Plotly.newPlot("bubble", bubbleData, bubbleLayout); 
-  
-
       });
   }  
 
