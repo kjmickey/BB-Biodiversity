@@ -2,7 +2,7 @@
 function demoInfo(id){
     d3.json("samples.json").then((data)=> {
         var metadata = data.metadata;
-        console.log(metadata);
+        // console.log(metadata);
 
         //filter demo info data by id
         var filterResult = metadata.filter(info => info.id.toString() === id)[0];
@@ -26,7 +26,7 @@ function plots(id) {
         //filter wfreq value by id
         var wfreq = data.metadata.filter(f => f.id.toString() === id)[0];
         wfreq = wfreq.wfreq;
-        console.log("Washing Freq: " + wfreq);
+        // console.log("Washing Freq: " + wfreq);
         
         // filter samples+ values by id 
         var samples = data.samples.filter(s => s.id.toString() === id)[0];
@@ -35,7 +35,7 @@ function plots(id) {
   
         // Getting the top 10 
         var samplevalues = samples.sample_values.slice(0, 10).reverse();
-        console.log("top 10 sample: " + samplevalues);
+        // console.log("top 10: " + samplevalues);
   
         // get only top 10 otu ids for the plot OTU and reversing it. 
         var OTU = (samples.otu_ids.slice(0, 10)).reverse();
@@ -43,7 +43,7 @@ function plots(id) {
         // get the otu id's to the desired form for the plot
         var OTU_id = OTU.map(d => "OTU " + d)
   
-        console.log("OTU IDS: " + OTU_id);
+        // console.log("OTU IDS: " + OTU_id);
   
   
         // get the top 10 labels for the plot and reversing it.
@@ -59,6 +59,8 @@ function plots(id) {
               color: 'Red'},
             type:"bar",
             orientation: "h",
+
+
         };
   
         // create data variable
@@ -71,6 +73,8 @@ function plots(id) {
           yaxis:{
             //   tickmode:"linear",
               title: "Top 10 OTU's",
+            // Tried to get it to change color on hover, but couldn't make it work
+            //  hovermode: {color: "blue"}
            },
         
        };
@@ -117,6 +121,7 @@ function init() {
             .append("option")
             .text(name)
             .property("value");
+            console.log("init",name);
         });
         plots(data.names[0]);
         demoInfo(data.names[0]);
